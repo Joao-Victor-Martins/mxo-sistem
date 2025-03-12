@@ -4,7 +4,7 @@ import GraphTest from "./components/GraphTest";
 export default function Home() {
   return (
     <main>
-      <h1>Olá Mundo</h1>
+      <h2>Selecione a Loja através do código:</h2>
       <GraphTest />
     </main>
   );

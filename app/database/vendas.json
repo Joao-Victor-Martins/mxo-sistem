@@ -1,0 +1,32 @@
+[
+  {
+    "LOJA": "ÓTICA DINIZ",
+    "MES": "FEVEREIRO",
+    "ANO": "2025",
+    "DINHEIRO": 1000,
+    "CARTÃO": 500,
+    "PIX": 2000,
+    "DUPLICATA": 10000,
+    "PE": 5000
+  },
+  {
+    "LOJA": "ÓTICA OURO PRIME",
+    "MES": "FEVEREIRO",
+    "ANO": "2025",
+    "DINHEIRO": 3000,
+    "CARTÃO": 20000,
+    "PIX": 2000,
+    "DUPLICATA": 20000,
+    "PE": 7000
+  },
+  {
+    "LOJA": "ÓTICA OURO PAULISTA",
+    "MES": "FEVEREIRO",
+    "ANO": "2025",
+    "DINHEIRO": 15000,
+    "CARTÃO": 5000,
+    "PIX": 2000,
+    "DUPLICATA": 30000,
+    "PE": 6000
+  }
+]
