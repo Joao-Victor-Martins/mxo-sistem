@@ -1,5 +1,5 @@
 import Image from "next/image";
-import GraphTest from "./components/GraphTest";
+import GraphTest from "./components/GraficSales";
 
 
 export default function Home() {

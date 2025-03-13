@@ -16,33 +16,42 @@ import LogoMXO from "@/public/LOGO-MXO.png";
 import LogoPrime from "@/public/LOGO-PRIME.png";
 import LogoPaulista from "@/public/LOGO-PAULISTA.png";
 import Image from "next/image";
+import { StaticImageData } from "next/image";
 
 // ✅ Registrar os componentes necessários
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
-export default function GraphTest() {
-  const [lojaSelected, setLojaSelected] = useState<string>("TODAS AS LOJAS");
+export default function GraficSales() {
+  const [lojaSelected, setLojaSelected] = useState<string>("All Business");
   const [logoSelected, setLogoSelected] = useState(LogoMXO);
 
-  function changeLoja(event: React.ChangeEvent<HTMLInputElement>) {
-    if (event.target.value === "1") {
-      setLojaSelected("ÓTICA DINIZ");
-      setLogoSelected(LogoDiniz);
-    } else if (event.target.value === "2") {
-      setLojaSelected("ÓTICA OURO PRIME");
-      setLogoSelected(LogoPrime);
-    } else if (event.target.value === "3") {
-      setLojaSelected("ÓTICA OURO PAULISTA");
-      setLogoSelected(LogoPaulista);
-    } else {
-      setLojaSelected("TODAS AS LOJAS");
-      setLogoSelected(LogoMXO);
-    }
+  const businessID = dataBaseVendas.map((item) => item.ID);
+
+  
+  function handleLojaChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    const loja = e.target.value as keyof typeof logos; // Garante que a chave está no tipo do objeto
+    setLojaSelected(loja);
+    
+    const logos: Record<string, StaticImageData> = {
+      "ÓTICA DINIZ": LogoDiniz,
+      "ÓTICA OURO PRIME": LogoPrime,
+      "ÓTICA OURO PAULISTA": LogoPaulista,
+      "All Business": LogoMXO,
+    };
+  
+    setLogoSelected(logos[loja] || LogoMXO);
   }
 
   // ✅ Filtrar os dados pela loja selecionada
   const vendasFiltradas = dataBaseVendas.filter(
-    (venda) => lojaSelected === "TODAS AS LOJAS" || venda.LOJA === lojaSelected
+    (venda) => lojaSelected === "All Business" || venda.LOJA === lojaSelected
   );
 
   // ✅ Somar os valores por forma de pagamento
@@ -59,12 +68,18 @@ export default function GraphTest() {
 
   // ✅ Configuração dos dados do gráfico
   const data = {
-    labels: labels, 
+    labels: labels,
     datasets: [
       {
         label: lojaSelected,
         data: valores, // Valores por forma de pagamento
-        backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF"],
+        backgroundColor: [
+          "#FF6384",
+          "#36A2EB",
+          "#FFCE56",
+          "#4BC0C0",
+          "#9966FF",
+        ],
         borderColor: "black",
         borderWidth: 1,
       },
@@ -74,14 +89,26 @@ export default function GraphTest() {
   return (
     <div style={{ padding: 40, width: 800, height: 400 }}>
       <Image height={100} width={100} src={logoSelected} alt="Logos" />
-      
-      <input
-        onChange={changeLoja}
-        placeholder="Selecione a Loja"
-        type="number"
-        id="loja"
-        name="loja"
-      />
+
+      <div className="relative inline-block text-left">
+        {/* Botão para abrir/fechar */}
+        <label htmlFor="selectBusiness">Select a business:</label>
+        <select
+          id="selectBusiness"
+          name="selectBusiness"
+          onChange={handleLojaChange}
+        >
+          <option defaultValue={"All Business"} value="All Business">
+            All Business
+          </option>
+          {dataBaseVendas.map((loja) => (
+            <option key={loja.ID} value={loja.LOJA}>
+              {loja.LOJA}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <h1>Gráfico de Vendas</h1>
       <Bar data={data} />
     </div>

@@ -1,6 +1,8 @@
 [
   {
+    "ID": "01",
     "LOJA": "ÓTICA DINIZ",
+    "LOGO": "LogoDiniz",
     "MES": "FEVEREIRO",
     "ANO": "2025",
     "FORMAPAGAMENTO": {
@@ -12,7 +14,9 @@
     }
   },
   {
+    "ID": "02",
     "LOJA": "ÓTICA OURO PRIME",
+    "LOGO": "LogoPrime",
     "MES": "FEVEREIRO",
     "ANO": "2025",
     "FORMAPAGAMENTO": {
@@ -24,7 +28,9 @@
     }
   },
   {
+    "ID": "03",
     "LOJA": "ÓTICA OURO PAULISTA",
+    "LOGO": "LogoPaulista",
     "MES": "FEVEREIRO",
     "ANO": "2025",
     "FORMAPAGAMENTO": {
