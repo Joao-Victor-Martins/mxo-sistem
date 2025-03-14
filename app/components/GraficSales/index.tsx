@@ -34,18 +34,17 @@ export default function GraficSales() {
 
   const businessID = dataBaseVendas.map((item) => item.ID);
 
-  
   function handleLojaChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const loja = e.target.value as keyof typeof logos; // Garante que a chave está no tipo do objeto
     setLojaSelected(loja);
-    
+
     const logos: Record<string, StaticImageData> = {
       "ÓTICA DINIZ": LogoDiniz,
       "ÓTICA OURO PRIME": LogoPrime,
       "ÓTICA OURO PAULISTA": LogoPaulista,
       "All Business": LogoMXO,
     };
-  
+
     setLogoSelected(logos[loja] || LogoMXO);
   }
 
@@ -90,7 +89,7 @@ export default function GraficSales() {
     <div style={{ padding: 40, width: 800, height: 400 }}>
       <Image height={100} width={100} src={logoSelected} alt="Logos" />
 
-      <div className="relative inline-block text-left">
+      <div className="flex flex-col w-64 bg-red-500">
         {/* Botão para abrir/fechar */}
         <label htmlFor="selectBusiness">Select a business:</label>
         <select
